@@ -10,7 +10,7 @@ export const LoginContainer = styled('div', {
 
 export const ImageAside = styled('div', {
   display: 'flex',
-  flex: '40%',
+  flex: '20%',
   padding: '$5',
 })
 
@@ -18,12 +18,14 @@ export const ImageContainer = styled('div', {
   width: '100%',
   height: '100%',
   borderRadius: '$md',
-  background: '$gray-500',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 })
 
 export const AccessAside = styled('div', {
   display: 'flex',
-  flex: '60%',
+  flex: '80%',
   padding: '$5',
 })
 

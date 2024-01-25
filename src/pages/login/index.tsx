@@ -1,13 +1,17 @@
 import * as S from '@/styles/pages/login'
 import ButtonAuth from '@/components/buttonAuth'
 import { GoogleLogo, GithubLogo, User } from '@phosphor-icons/react'
+import LoginImage from '../../../images/LoginImage.svg'
+import Image from 'next/image'
 
 export default function Login() {
   return (
     <>
       <S.LoginContainer>
         <S.ImageAside>
-          <S.ImageContainer></S.ImageContainer>
+          <S.ImageContainer>
+            <Image src={LoginImage} alt="book-wise-image" />
+          </S.ImageContainer>
         </S.ImageAside>
 
         <S.AccessAside>
