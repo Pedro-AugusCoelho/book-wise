@@ -5,9 +5,12 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import ButtonLink from './components/buttonLink'
+import { SignOut } from '@phosphor-icons/react'
 
 export default function SidebarLogin() {
   const router = useRouter()
+  const userLogged = false
+
   return (
     <>
       <S.SidebarLoginContainer>
@@ -34,6 +37,25 @@ export default function SidebarLogin() {
             route={router.route === '/profile'}
           />
         </S.SidebarLoginBody>
+
+        <S.SidebarLoginFooter>
+          <S.BtnConnect>
+            {userLogged && (
+              <>
+                <S.BtnConnectImageContainer></S.BtnConnectImageContainer>
+                <span>Pedro A. Coelho</span>
+                <SignOut size={24} weight="fill" />
+              </>
+            )}
+
+            {!userLogged && (
+              <>
+                <p>Fazer Login</p>
+                <SignOut size={24} weight="fill" />
+              </>
+            )}
+          </S.BtnConnect>
+        </S.SidebarLoginFooter>
       </S.SidebarLoginContainer>
     </>
   )
