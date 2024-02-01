@@ -54,3 +54,48 @@ export const RatingContainer = styled('div', {
   alignItems: 'flex-start',
   gap: '$2',
 })
+
+export const Body = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+
+  marginTop: '$8',
+  gap: '$5',
+})
+
+export const BookContainer = styled('div', {
+  width: '108px',
+  height: '152px',
+  borderRadius: '$sm',
+
+  background: '$green-300',
+})
+
+export const CommentContainer = styled('div', {
+  flex: 1,
+})
+
+export const CommentHeader = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$1',
+
+  p: {
+    fontWeight: '$bold',
+    color: '$gray-100',
+  },
+
+  span: {
+    fontSize: '$sm',
+    color: '$gray-400',
+  },
+})
+
+export const CommentBody = styled('div', {
+  width: '100%',
+  maxHeight: '88px',
+  wordBreak: 'break-word',
+  overflow: 'hidden',
+  textAlign: 'justify',
+})

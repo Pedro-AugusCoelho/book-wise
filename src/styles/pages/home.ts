@@ -1,11 +1,10 @@
 import { styled } from '../../../stitches.config'
 
 export const HomeContainer = styled('div', {
-  display: 'flex',
-  width: '100%',
+  display: 'grid',
   maxWidth: '100vw',
-  height: '100vh',
-  margin: '0 auto',
+  gridTemplateColumns: '1fr 4fr 2fr',
+  gap: '6rem',
 })
 
 export const SidebarLeft = styled('div', {
@@ -14,7 +13,12 @@ export const SidebarLeft = styled('div', {
 })
 
 export const Content = styled('div', {
-  flex: '50%',
+  flex: 1,
+  padding: '$4',
+})
+
+export const SidebarRight = styled('div', {
+  flex: '30%',
   padding: '$4',
 })
 
@@ -51,9 +55,4 @@ export const listBooks = styled('div', {
   display: 'grid',
   gridTemplateColumns: '1fr',
   gap: '$3',
-})
-
-export const SidebarRight = styled('div', {
-  flex: '30%',
-  padding: '$4',
 })
