@@ -1,7 +1,7 @@
-import * as S from '@/styles/components/bookContent'
+import * as S from '@/styles/components/cardBook'
 import { Star } from '@phosphor-icons/react'
 
-export default function BookContent() {
+export default function CardBook() {
   const wordResume =
     'Lorem ipsum dolor sit amet, consectetur adipisicing consectetur adipisicing consectetur adipisicingconsectetur adipisicing elit. Officia, natus blanditiis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, natus blanditiis? Blanditiis ad velit, ipsum repellendus nisi eligendi labore est deleniti expedita harum asperiores, tempore pariatur adipisci aperiam minus ipsa.'
 
