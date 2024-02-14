@@ -1,17 +1,9 @@
-import { ReactNode, createContext, useState } from 'react'
-
-export interface Book {
-  id: number
-}
-
-export interface User {
-  id: number
-}
+import { RatingCompleted } from '@/@types/rating'
+import { api } from '@/lib/axios'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 
 interface bookWiseContextType {
-  books: Book[]
-  user: User
-  users: User[]
+  ratings: RatingCompleted[]
 }
 
 interface bookWiseContextProviderProps {
@@ -23,13 +15,20 @@ export const BookWiseContext = createContext({} as bookWiseContextType)
 export function BookWiseContextProvider({
   children,
 }: bookWiseContextProviderProps) {
-  const [books, setBooks] = useState<Book[]>([])
-  const [users, setUsers] = useState<User[]>([])
+  const [ratings, setRatings] = useState<RatingCompleted[]>([])
 
-  const [user, setUser] = useState<User>({} as User)
+  useEffect(() => {
+    handleSearchAllRating()
+  }, [])
+
+  async function handleSearchAllRating() {
+    const res: RatingCompleted[] = await api.get('/ratings')
+
+    setRatings(res)
+  }
 
   return (
-    <BookWiseContext.Provider value={{ books, user, users }}>
+    <BookWiseContext.Provider value={{ ratings }}>
       {children}
     </BookWiseContext.Provider>
   )

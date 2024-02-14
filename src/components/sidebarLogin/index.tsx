@@ -1,5 +1,5 @@
 import * as S from '../../styles/components/sidebarLogin'
-import Logo from '../../../images/LogoBookWise.svg'
+import Logo from '../../../public/images/LogoBookWise.svg'
 
 import { useRouter } from 'next/router'
 import Image from 'next/image'

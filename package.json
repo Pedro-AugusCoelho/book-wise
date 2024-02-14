@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
     "@prisma/client": "^5.8.1",
@@ -20,11 +23,13 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.1.0",
-    "@types/node": "^20",
+    "@types/node": "^20.11.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8.56.0",
     "prisma": "^5.8.1",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
   }
 }
