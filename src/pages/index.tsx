@@ -5,9 +5,22 @@ import SidebarLogin from '@/components/sidebarLogin'
 import { CaretRight, TrendUp } from '@phosphor-icons/react'
 import CardBook from '@/components/cardBook'
 import CardBookSimple from '@/components/cardBookSimple'
+import { useContext } from 'react'
+import { BookWiseContext } from '@/context/bookWiseContext'
 
 export default function Home() {
-  const numbers = [1, 2, 3]
+  const { ratings } = useContext(BookWiseContext)
+
+  const itemsWithRatingFive = ratings.filter((item) => item.rating.rate === 5)
+  const selectedItems = []
+
+  // SELECIONAR ALEATORIAMENTE 3 ITENS DO ARRAY DE ITENS COM AVALIAÇÃO 5
+  while (selectedItems.length < 3 && itemsWithRatingFive.length > 0) {
+    const randomIndex = Math.floor(Math.random() * itemsWithRatingFive.length)
+    selectedItems.push(itemsWithRatingFive[randomIndex])
+    // REMOVA O ITEM SELECIONADO PARA NÃO SER SELECIONADO NOVAMENTE
+    itemsWithRatingFive.splice(randomIndex, 1)
+  }
 
   return (
     <>
@@ -27,8 +40,8 @@ export default function Home() {
               <p>Avaliações mais recentes</p>
 
               <S.listBooks>
-                {numbers.map((item) => (
-                  <CardBook key={item} />
+                {ratings.map((item) => (
+                  <CardBook key={item.rating.id} ratings={item} />
                 ))}
               </S.listBooks>
             </S.BodyLeft>
@@ -44,8 +57,13 @@ export default function Home() {
               </S.CallTitle>
 
               <S.listBooks>
-                {numbers.map((item) => (
-                  <CardBookSimple key={item} />
+                {selectedItems.map((item) => (
+                  <CardBookSimple
+                    key={item.rating.id}
+                    author={item.book.author}
+                    rateNumber={item.rating.rate}
+                    title={item.book.name}
+                  />
                 ))}
               </S.listBooks>
             </S.BodyRight>

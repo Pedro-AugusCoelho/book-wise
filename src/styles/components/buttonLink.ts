@@ -3,20 +3,26 @@ import { styled } from '../../../stitches.config'
 export const ButtonLink = styled('div', {
   width: '100%',
   display: 'flex',
-  gap: '$4',
 
-  cursor: 'pointer',
-  paddingLeft: '$8',
-  alignItems: 'center',
+  a: {
+    width: '100%',
+    display: 'flex',
+    gap: '$4',
+    textDecoration: 'none',
+    color: '$gray-100',
 
-  span: {
-    fontWeight: '$bold',
-    fontSize: '$md',
-  },
+    cursor: 'pointer',
+    paddingLeft: '$8',
+    alignItems: 'center',
+    span: {
+      fontWeight: '$bold',
+      fontSize: '$md',
+    },
 
-  '&:hover': {
-    opacity: '0.5',
-    transition: 'opacity .2s',
+    '&:hover': {
+      opacity: '0.5',
+      transition: 'opacity .2s',
+    },
   },
 })
 

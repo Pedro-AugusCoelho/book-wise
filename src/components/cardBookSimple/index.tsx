@@ -1,7 +1,21 @@
 import * as S from '@/styles/components/cardBookSimple'
+import countRateStart from '@/util/countRateStart'
 import { Star } from '@phosphor-icons/react'
 
-export default function CardBookSimple() {
+interface CardBookSimpleProps {
+  title: string
+  author: string
+  rateNumber: number
+  cover_url?: string
+}
+
+export default function CardBookSimple({
+  title,
+  author,
+  rateNumber,
+}: CardBookSimpleProps) {
+  const rate = countRateStart(rateNumber)
+
   return (
     <>
       <S.Content>
@@ -9,17 +23,19 @@ export default function CardBookSimple() {
 
         <S.InfoContainer>
           <S.Header>
-            <span>A revolução dos bichos</span>
-            <span>George Orwell</span>
+            <span>{title}</span>
+            <span>{author}</span>
           </S.Header>
 
           <S.Footer>
             <S.RatingContainer>
-              <Star size={14} weight="fill" />
-              <Star size={14} weight="fill" />
-              <Star size={14} weight="fill" />
-              <Star size={14} weight="fill" />
-              <Star size={14} weight="thin" />
+              {rate.map((item, k) =>
+                item === 'fill' ? (
+                  <Star size={16} weight="fill" key={k} />
+                ) : (
+                  <Star size={16} weight="thin" key={k} />
+                ),
+              )}
             </S.RatingContainer>
           </S.Footer>
         </S.InfoContainer>

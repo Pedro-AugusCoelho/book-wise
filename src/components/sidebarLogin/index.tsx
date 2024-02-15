@@ -22,19 +22,22 @@ export default function SidebarLogin() {
           <ButtonLink
             icon="trend-up"
             title="Início"
-            route={router.route === '/'}
+            routeCurrent={router.route === '/'}
+            route="/"
           />
 
           <ButtonLink
             icon="explore"
             title="Explorar"
-            route={router.route === '/explore'}
+            routeCurrent={router.route === '/explore'}
+            route="/explore"
           />
 
           <ButtonLink
             icon="profile"
             title="Perfil"
-            route={router.route === '/profile'}
+            routeCurrent={router.route === '/profile'}
+            route="/profile"
           />
         </S.SidebarLoginBody>
 

@@ -36,9 +36,9 @@ export const NameContainer = styled('div', {
   display: 'flex',
   flex: 1,
   flexDirection: 'column',
-  gap: '$2',
+  gap: '$1',
 
-  p: {
+  'span:first-child': {
     color: '$gray-100',
   },
 
@@ -69,7 +69,7 @@ export const BookContainer = styled('div', {
   height: '152px',
   borderRadius: '$sm',
 
-  background: '$green-300',
+  background: '$gradient-vertical',
 })
 
 export const CommentContainer = styled('div', {
@@ -81,7 +81,7 @@ export const CommentHeader = styled('div', {
   flexDirection: 'column',
   gap: '$1',
 
-  p: {
+  'span:first-child': {
     fontWeight: '$bold',
     color: '$gray-100',
   },
@@ -98,4 +98,5 @@ export const CommentBody = styled('div', {
   wordBreak: 'break-word',
   overflow: 'hidden',
   textAlign: 'justify',
+  marginTop: '$4',
 })

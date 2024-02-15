@@ -22,9 +22,9 @@ export function BookWiseContextProvider({
   }, [])
 
   async function handleSearchAllRating() {
-    const res: RatingCompleted[] = await api.get('/ratings')
+    const res = await api.get('/ratings')
 
-    setRatings(res)
+    setRatings(res.data.rating)
   }
 
   return (
