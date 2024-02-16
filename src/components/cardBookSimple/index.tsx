@@ -5,7 +5,7 @@ import { Star } from '@phosphor-icons/react'
 interface CardBookSimpleProps {
   title: string
   author: string
-  rateNumber: number
+  rateNumber: { rate: number }[]
   cover_url?: string
 }
 
@@ -14,7 +14,15 @@ export default function CardBookSimple({
   author,
   rateNumber,
 }: CardBookSimpleProps) {
-  const rate = countRateStart(rateNumber)
+  const calculateAverage = (rating: { rate: number }[]) => {
+    if (rating.length === 0) return 0
+
+    const sum = rating.reduce((acc, review) => acc + review.rate, 0)
+    const average = sum / rating.length
+    return Math.floor(average)
+  }
+
+  const rate = countRateStart(calculateAverage(rateNumber))
 
   return (
     <>

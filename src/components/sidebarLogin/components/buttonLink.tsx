@@ -1,8 +1,7 @@
+import * as S from '@/styles/components/buttonLink'
+
 import { Binoculars, TrendUp, User } from '@phosphor-icons/react'
 import Link from 'next/link'
-
-import * as S from '@/styles/components/buttonLink'
-import router from 'next/router'
 
 interface ButtonLinkProps {
   title: string
