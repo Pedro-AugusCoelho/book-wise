@@ -1,4 +1,5 @@
 export interface Category {
-  id: string
+  id: string | null
   name: string
+  active: boolean
 }

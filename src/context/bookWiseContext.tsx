@@ -27,7 +27,7 @@ export function BookWiseContextProvider({
 }: bookWiseContextProviderProps) {
   const [ratings, setRatings] = useState<RatingCompleted[]>([])
 
-  const [categories, setCategories] = useState<Category[]>([])
+  const [categories, setCategories] = useState<any>([])
 
   const [books, setBooks] = useState<Book[]>([])
 
@@ -41,8 +41,15 @@ export function BookWiseContextProvider({
 
   async function searchAllCategories() {
     const res = await api.get('/category')
+    const data: Category[] = res.data
 
-    setCategories(res.data)
+    const dataCurrent: Category[] = [{ id: null, name: 'Tudo', active: true }]
+
+    for (let i = 0; i < data.length; i++) {
+      dataCurrent.push({ id: data[i].id, name: data[i].name, active: false })
+    }
+
+    setCategories(dataCurrent)
   }
 
   async function searchAllBooksByCategory(category: string) {
