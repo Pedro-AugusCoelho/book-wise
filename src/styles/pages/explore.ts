@@ -19,3 +19,25 @@ export const Content = styled('div', {
   display: 'flex',
   flexDirection: 'column',
 })
+
+export const Header = styled('div', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+})
+
+export const HeaderTitle = styled('div', {
+  display: 'flex',
+  gap: '$3',
+  alignItems: 'center',
+  marginTop: '$8',
+
+  color: '$green-100',
+
+  span: {
+    fontWeight: '$bold',
+    fontSize: '$2xl',
+    color: '$gray-100',
+  },
+})

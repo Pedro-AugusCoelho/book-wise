@@ -9,7 +9,7 @@ export default async function handler(
     return res.status(405).end()
   }
 
-  const popularBook = await await prisma.book.findMany({
+  const popularBook = await prisma.book.findMany({
     select: {
       id: true,
       name: true,

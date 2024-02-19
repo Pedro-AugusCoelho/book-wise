@@ -1,5 +1,6 @@
 import SidebarLogin from '@/components/sidebarLogin'
 import * as S from '@/styles/pages/explore'
+import { Binoculars } from '@phosphor-icons/react'
 
 export default function Explore() {
   return (
@@ -9,7 +10,14 @@ export default function Explore() {
           <SidebarLogin />
         </S.SidebarLeft>
 
-        <S.Content></S.Content>
+        <S.Content>
+          <S.Header>
+            <S.HeaderTitle>
+              <Binoculars size={32} weight="fill" />
+              <span>Explorar</span>
+            </S.HeaderTitle>
+          </S.Header>
+        </S.Content>
       </S.ExploreContainer>
     </>
   )
