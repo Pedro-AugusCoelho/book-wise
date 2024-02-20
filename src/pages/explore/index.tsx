@@ -1,5 +1,5 @@
+import { Category } from '@/@types/category'
 import SearchInput from '@/components/InputSearch'
-import CardBook from '@/components/cardBook'
 import SidebarLogin from '@/components/sidebarLogin'
 import { BookWiseContext } from '@/context/bookWiseContext'
 import * as S from '@/styles/pages/explore'
@@ -7,21 +7,24 @@ import { Binoculars } from '@phosphor-icons/react'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
 
 export default function Explore() {
-  const { searchAllCategories, searchAllBooksByCategory, categories } =
-    useContext(BookWiseContext)
-
-  const [search, setSearch] = useState<string>('')
+  const {
+    searchAllCategories,
+    categories,
+    fillSearchFilter,
+    search,
+    selectActiveCategory,
+  } = useContext(BookWiseContext)
 
   useEffect(() => {
     searchAllCategories()
   }, [])
 
   function handleChangeInput(e: ChangeEvent<HTMLInputElement>) {
-    setSearch(e.target.value)
+    fillSearchFilter(e.target.value)
   }
 
-  function handleSearchBook() {
-    //
+  function handleSelectActiveCategory(category: Category) {
+    selectActiveCategory(category)
   }
 
   return (
@@ -53,6 +56,7 @@ export default function Explore() {
                 <S.ItemCarrousel
                   key={item.id}
                   className={item.active ? 'activated' : ''}
+                  onClick={() => handleSelectActiveCategory(item)}
                 >
                   {item.name}
                 </S.ItemCarrousel>

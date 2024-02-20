@@ -3,6 +3,7 @@ import { Category } from '@/@types/category'
 import { PopularBook } from '@/@types/popularBook'
 import { RatingCompleted } from '@/@types/rating'
 import { api } from '@/lib/axios'
+import category from '@/pages/api/category'
 import { ReactNode, createContext, useState } from 'react'
 
 interface bookWiseContextType {
@@ -10,10 +11,12 @@ interface bookWiseContextType {
   ratings: RatingCompleted[]
   popularBooks: PopularBook[]
   categories: Category[]
+  search: string
   searchAllRating: () => void
   searchPopularBooks: () => void
   searchAllCategories: () => void
-  searchAllBooksByCategory: (category: string) => void
+  fillSearchFilter: (value: string) => void
+  selectActiveCategory: (item: Category) => void
 }
 
 interface bookWiseContextProviderProps {
@@ -27,11 +30,13 @@ export function BookWiseContextProvider({
 }: bookWiseContextProviderProps) {
   const [ratings, setRatings] = useState<RatingCompleted[]>([])
 
-  const [categories, setCategories] = useState<any>([])
+  const [categories, setCategories] = useState<Category[]>([])
 
   const [books, setBooks] = useState<Book[]>([])
 
   const [popularBooks, setPopularBooks] = useState<PopularBook[]>([])
+
+  const [search, setSearch] = useState<string>('')
 
   async function searchAllRating() {
     const res = await api.get('/ratings')
@@ -52,20 +57,54 @@ export function BookWiseContextProvider({
     setCategories(dataCurrent)
   }
 
-  async function searchAllBooksByCategory(category: string) {
-    const res = await api.get('/books', {
-      params: {
-        category,
-      },
-    })
+  async function searchAllBooksByCategory() {
+    const categoryId = categories
+      .filter((item) => item.active === true)
+      .map((item) => {
+        return item.id
+      })
 
-    setBooks(res.data)
+    const filter = search
+
+    console.log(categoryId)
+    console.log(filter)
+
+    // const res = await api.get('/books', {
+    //   params: {
+    //     category,
+    //     filter,
+    //   },
+    // })
+
+    // setBooks(res.data)
   }
 
   async function searchPopularBooks() {
     const res = await api.get('/books/popularBook')
 
     setPopularBooks(res.data)
+  }
+
+  async function fillSearchFilter(value: string) {
+    await setSearch(value)
+
+    searchAllBooksByCategory()
+  }
+
+  async function selectActiveCategory(item: Category) {
+    if (item) {
+      await setCategories(
+        categories.map((category: Category) => {
+          if (category.id === item.id) {
+            return { ...category, active: true }
+          } else {
+            return { ...category, active: false }
+          }
+        }),
+      )
+
+      searchAllBooksByCategory()
+    }
   }
 
   return (
@@ -75,10 +114,12 @@ export function BookWiseContextProvider({
         ratings,
         popularBooks,
         categories,
-        searchAllBooksByCategory,
+        search,
+        fillSearchFilter,
         searchAllRating,
         searchPopularBooks,
         searchAllCategories,
+        selectActiveCategory,
       }}
     >
       {children}
