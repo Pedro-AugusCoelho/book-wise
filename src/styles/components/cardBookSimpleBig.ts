@@ -1,23 +1,21 @@
 import { styled } from '../../../stitches.config'
 
-export const Content = styled('div', {
-  width: '100%',
-  padding: '$5',
+export const CardBook = styled('div', {
   background: '$gray-700',
   borderRadius: '$md',
-
+  padding: '$5',
   display: 'flex',
-  gap: '$5',
+  gap: '$3',
 })
 
-export const BookContainer = styled('div', {
-  width: '64px',
-  height: '94px',
-  borderRadius: '$sm',
+export const CoverBook = styled('div', {
+  width: '108px',
+  height: '152px',
+  borderRadius: '$md',
   background: '$gradient-vertical',
 })
 
-export const InfoContainer = styled('div', {
+export const DescriptionBook = styled('div', {
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
@@ -25,16 +23,18 @@ export const InfoContainer = styled('div', {
   justifyContent: 'space-between',
 })
 
-export const Header = styled('div', {
+export const HeaderBook = styled('div', {
   display: 'flex',
+  flex: 1,
   flexDirection: 'column',
   gap: '$1',
 
-  span: {
+  'span:first-child': {
+    color: '$gray-100',
     fontWeight: '$bold',
   },
 
-  'span:last-child': {
+  span: {
     fontSize: '$sm',
     color: '$gray-400',
   },
@@ -46,8 +46,6 @@ export const Footer = styled('div', {
 
 export const RatingContainer = styled('div', {
   display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'flex-start',
   gap: '$2',
 
   color: '$purple-100',

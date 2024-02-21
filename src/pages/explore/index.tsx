@@ -1,10 +1,11 @@
 import { Category } from '@/@types/category'
 import SearchInput from '@/components/InputSearch'
+import CardBookSimpleBig from '@/components/cardBookSimpleBig'
 import SidebarLogin from '@/components/sidebarLogin'
 import { BookWiseContext } from '@/context/bookWiseContext'
 import * as S from '@/styles/pages/explore'
 import { Binoculars } from '@phosphor-icons/react'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect } from 'react'
 
 export default function Explore() {
   const {
@@ -13,6 +14,7 @@ export default function Explore() {
     fillSearchFilter,
     search,
     selectActiveCategory,
+    books,
   } = useContext(BookWiseContext)
 
   useEffect(() => {
@@ -62,6 +64,18 @@ export default function Explore() {
                 </S.ItemCarrousel>
               ))}
           </S.CarrouselContainer>
+
+          <S.BookContainer>
+            {books.length > 0 &&
+              books.map((item) => (
+                <CardBookSimpleBig
+                  author={item.author}
+                  rateNumber={item.ratings}
+                  title={item.name}
+                  key={item.id}
+                />
+              ))}
+          </S.BookContainer>
         </S.Content>
       </S.ExploreContainer>
     </>

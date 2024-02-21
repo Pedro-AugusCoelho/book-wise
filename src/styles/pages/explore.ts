@@ -69,3 +69,13 @@ export const ItemCarrousel = styled('div', {
     color: '$gray-100',
   },
 })
+
+export const BookContainer = styled('div', {
+  width: '100%',
+  marginTop: '3rem',
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr 1fr',
+  gap: '$5',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+})

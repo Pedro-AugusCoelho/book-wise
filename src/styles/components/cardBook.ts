@@ -53,6 +53,8 @@ export const RatingContainer = styled('div', {
   justifyContent: 'center',
   alignItems: 'flex-start',
   gap: '$2',
+
+  background: '$purple-100',
 })
 
 export const Body = styled('div', {

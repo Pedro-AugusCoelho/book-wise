@@ -11,15 +11,19 @@ export default async function handler(
 
   // RECEBENDO A CATEGORIA SELECIONADA
   const categoryId = req.query.category as string
+  const filter = req.query.filter as string
 
   const booksData = await prisma.book.findMany({
-    where: {
-      categories: {
-        some: {
-          categoryId,
-        },
-      },
-    },
+    where:
+      categoryId !== 'all'
+        ? {
+            categories: {
+              some: {
+                categoryId,
+              },
+            },
+          }
+        : undefined,
     include: {
       ratings: {
         orderBy: {
