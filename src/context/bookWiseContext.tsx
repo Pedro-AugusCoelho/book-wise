@@ -4,6 +4,7 @@ import { PopularBook } from '@/@types/popularBook'
 import { RatingCompleted } from '@/@types/rating'
 import { api } from '@/lib/axios'
 import { ReactNode, createContext, useEffect, useState } from 'react'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
 interface bookWiseContextType {
   books: BookCompleted[]
@@ -16,6 +17,7 @@ interface bookWiseContextType {
   searchAllCategories: () => void
   fillSearchFilter: (value: string) => void
   selectActiveCategory: (item: Category) => void
+  SignInWithGithub: () => void
 }
 
 interface bookWiseContextProviderProps {
@@ -100,6 +102,10 @@ export function BookWiseContextProvider({
     }
   }
 
+  async function SignInWithGithub() {
+    await signIn('github')
+  }
+
   return (
     <BookWiseContext.Provider
       value={{
@@ -113,6 +119,7 @@ export function BookWiseContextProvider({
         searchPopularBooks,
         searchAllCategories,
         selectActiveCategory,
+        SignInWithGithub,
       }}
     >
       {children}

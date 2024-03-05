@@ -1,10 +1,18 @@
 import * as S from '@/styles/pages/login'
 import ButtonAuth from '@/components/buttonAuth'
 import { GoogleLogo, GithubLogo, User } from '@phosphor-icons/react'
-import LoginImage from '../../../images/LoginImage.svg'
+import LoginImage from '../../../public/images/LoginImage.svg'
 import Image from 'next/image'
+import { BookWiseContext } from '@/context/bookWiseContext'
+import { useContext } from 'react'
 
 export default function Login() {
+  const { SignInWithGithub } = useContext(BookWiseContext)
+
+  function handleSignIn() {
+    SignInWithGithub()
+  }
+
   return (
     <>
       <S.LoginContainer>
@@ -28,7 +36,7 @@ export default function Login() {
                   <span>Entrar com Google</span>
                 </ButtonAuth>
 
-                <ButtonAuth>
+                <ButtonAuth onClick={handleSignIn}>
                   <GithubLogo size={32} color="white" weight="fill" />
                   <span>Entrar com Github</span>
                 </ButtonAuth>

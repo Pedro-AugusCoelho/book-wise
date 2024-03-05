@@ -1,15 +1,63 @@
-import NextAuth from 'next-auth'
-import GithubProvider from 'next-auth/providers/github'
+import NextAuth, { NextAuthOptions } from 'next-auth'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export const authOptions = {
-  // Configure one or more authentication providers
-  providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    }),
-    // ...add more providers here
-  ],
+// import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
+import GitHubProvider, { GithubProfile } from 'next-auth/providers/github'
+
+import { PrismaAdapter } from '@/lib/auth/prisma-adapter'
+
+export function buildNextAuthOptions(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): NextAuthOptions {
+  return {
+    adapter: PrismaAdapter(req, res),
+    providers: [
+      // GoogleProvider({
+      //   clientId: process.env.GOOGLE_CLIENT_ID ?? '',
+      //   clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+      //   authorization: {
+      //     params: {
+      //       scope:
+      //         'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+      //     },
+      //   },
+      //   profile(profile: GoogleProfile) {
+      //     return {
+      //       id: profile.sub,
+      //       name: profile.name,
+      //       email: profile.email,
+      //       avatar_url: profile.picture,
+      //     }
+      //   },
+      //   allowDangerousEmailAccountLinking: true,
+      // }),
+      GitHubProvider({
+        clientId: process.env.GITHUB_ID as string,
+        clientSecret: process.env.GITHUB_SECRET as string,
+        profile(profile: GithubProfile) {
+          return {
+            id: profile.id.toString(),
+            name: profile.name!,
+            email: profile.email!,
+            avatar_url: profile.avatar_url,
+          }
+        },
+        allowDangerousEmailAccountLinking: true,
+      }),
+    ],
+
+    callbacks: {
+      async session({ session, user }) {
+        return {
+          ...session,
+          user,
+        }
+      },
+    },
+  }
 }
 
-export default NextAuth(authOptions)
+export default async function auth(req: NextApiRequest, res: NextApiResponse) {
+  return await NextAuth(req, res, buildNextAuthOptions(req, res))
+}

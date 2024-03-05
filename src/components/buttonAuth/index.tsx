@@ -3,8 +3,9 @@ import { ReactNode } from 'react'
 
 interface ButtonProps {
   children: ReactNode
+  onClick?: () => void
 }
 
-export default function Button({ children }: ButtonProps) {
-  return <S.ButtonAuth>{children}</S.ButtonAuth>
+export default function Button({ children, onClick }: ButtonProps) {
+  return <S.ButtonAuth onClick={onClick}>{children}</S.ButtonAuth>
 }
