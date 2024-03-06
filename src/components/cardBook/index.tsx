@@ -23,7 +23,7 @@ export default function CardBook({ ratings }: CardBookProps) {
           <S.ProfileImageBackground>
             <S.ProfileImageContainer>
               {ratings.user.avatar_url && (
-                <Image
+                <S.UserImage
                   src={ratings.user.avatar_url}
                   width={35}
                   height={35}

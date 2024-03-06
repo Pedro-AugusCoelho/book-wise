@@ -18,6 +18,7 @@ interface bookWiseContextType {
   fillSearchFilter: (value: string) => void
   selectActiveCategory: (item: Category) => void
   SignInWithGithub: () => void
+  SignOut: () => void
 }
 
 interface bookWiseContextProviderProps {
@@ -106,8 +107,8 @@ export function BookWiseContextProvider({
     await signIn('github', { callbackUrl: '/' })
   }
 
-  async function SignOutWithGithub() {
-    await signIn('github', { callbackUrl: '/login' })
+  async function SignOut() {
+    await signOut({ callbackUrl: '/login' })
   }
 
   return (
@@ -124,6 +125,7 @@ export function BookWiseContextProvider({
         searchAllCategories,
         selectActiveCategory,
         SignInWithGithub,
+        SignOut,
       }}
     >
       {children}

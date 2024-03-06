@@ -5,12 +5,20 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 import ButtonLink from './components/buttonLink'
-import { SignOut } from '@phosphor-icons/react'
+import { SignOut as SignOutIcon } from '@phosphor-icons/react'
 import { useSession } from 'next-auth/react'
+import { BookWiseContext } from '@/context/bookWiseContext'
+import { useContext } from 'react'
 
 export default function SidebarLogin() {
+  const { SignOut } = useContext(BookWiseContext)
+
   const router = useRouter()
   const session = useSession()
+
+  async function handleSignOut() {
+    await SignOut()
+  }
 
   return (
     <>
@@ -34,16 +42,18 @@ export default function SidebarLogin() {
             route="/explore"
           />
 
-          <ButtonLink
-            icon="profile"
-            title="Perfil"
-            routeCurrent={router.route === '/profile'}
-            route="/profile"
-          />
+          {session && session.status && (
+            <ButtonLink
+              icon="profile"
+              title="Perfil"
+              routeCurrent={router.route === '/profile'}
+              route="/profile"
+            />
+          )}
         </S.SidebarLoginBody>
 
         <S.SidebarLoginFooter>
-          <S.BtnConnect>
+          <S.BtnConnect onClick={handleSignOut}>
             {session.status === 'authenticated' && (
               <>
                 <S.BtnConnectImageContainer>
@@ -56,15 +66,15 @@ export default function SidebarLogin() {
                     />
                   )}
                 </S.BtnConnectImageContainer>
-                <span>Pedro A. Coelho</span>
-                <SignOut size={24} weight="fill" />
+                <span>{session.data.user.name}</span>
+                <SignOutIcon size={24} weight="fill" />
               </>
             )}
 
             {session.status !== 'authenticated' && (
               <>
                 <p>Fazer Login</p>
-                <SignOut size={24} weight="fill" />
+                <SignOutIcon size={24} weight="fill" />
               </>
             )}
           </S.BtnConnect>

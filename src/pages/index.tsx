@@ -2,6 +2,8 @@ import * as S from '@/styles/pages/home'
 
 import SidebarLogin from '@/components/sidebarLogin'
 
+import Link from 'next/link'
+
 import { CaretRight, TrendUp } from '@phosphor-icons/react'
 import CardBook from '@/components/cardBook'
 import CardBookSimple from '@/components/cardBookSimple'
@@ -60,10 +62,10 @@ export default function Home() {
               <S.CallTitle>
                 <p>Livros populares</p>
 
-                <a href="">
+                <Link href="/explore" prefetch={false}>
                   <span>Ver todos</span>
                   <CaretRight size={16} />
-                </a>
+                </Link>
               </S.CallTitle>
 
               <S.listBooks>
