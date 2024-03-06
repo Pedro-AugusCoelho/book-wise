@@ -6,10 +6,11 @@ import Image from 'next/image'
 
 import ButtonLink from './components/buttonLink'
 import { SignOut } from '@phosphor-icons/react'
+import { useSession } from 'next-auth/react'
 
 export default function SidebarLogin() {
   const router = useRouter()
-  const userLogged = false
+  const session = useSession()
 
   return (
     <>
@@ -43,15 +44,24 @@ export default function SidebarLogin() {
 
         <S.SidebarLoginFooter>
           <S.BtnConnect>
-            {userLogged && (
+            {session.status === 'authenticated' && (
               <>
-                <S.BtnConnectImageContainer></S.BtnConnectImageContainer>
+                <S.BtnConnectImageContainer>
+                  {session.data.user.avatar_url && (
+                    <S.UserImage
+                      src={session.data.user.avatar_url}
+                      alt="ImageUser"
+                      width={32}
+                      height={32}
+                    />
+                  )}
+                </S.BtnConnectImageContainer>
                 <span>Pedro A. Coelho</span>
                 <SignOut size={24} weight="fill" />
               </>
             )}
 
-            {!userLogged && (
+            {session.status !== 'authenticated' && (
               <>
                 <p>Fazer Login</p>
                 <SignOut size={24} weight="fill" />

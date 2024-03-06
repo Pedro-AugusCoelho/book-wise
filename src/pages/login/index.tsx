@@ -5,12 +5,13 @@ import LoginImage from '../../../public/images/LoginImage.svg'
 import Image from 'next/image'
 import { BookWiseContext } from '@/context/bookWiseContext'
 import { useContext } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Login() {
   const { SignInWithGithub } = useContext(BookWiseContext)
 
-  function handleSignIn() {
-    SignInWithGithub()
+  async function handleSignIn() {
+    await SignInWithGithub()
   }
 
   return (

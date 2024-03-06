@@ -71,6 +71,7 @@ export default function Explore() {
                 <CardBookSimpleBig
                   author={item.author}
                   rateNumber={item.ratings}
+                  coverUrl={item.cover_url}
                   title={item.name}
                   key={item.id}
                 />

@@ -103,7 +103,11 @@ export function BookWiseContextProvider({
   }
 
   async function SignInWithGithub() {
-    await signIn('github')
+    await signIn('github', { callbackUrl: '/' })
+  }
+
+  async function SignOutWithGithub() {
+    await signIn('github', { callbackUrl: '/login' })
   }
 
   return (

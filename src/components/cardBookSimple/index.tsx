@@ -1,18 +1,20 @@
 import * as S from '@/styles/components/cardBookSimple'
 import countRateStart from '@/util/countRateStart'
 import { Star } from '@phosphor-icons/react'
+import Image from 'next/image'
 
 interface CardBookSimpleProps {
   title: string
   author: string
   rateNumber: { rate: number }[]
-  cover_url?: string
+  coverUrl?: string
 }
 
 export default function CardBookSimple({
   title,
   author,
   rateNumber,
+  coverUrl,
 }: CardBookSimpleProps) {
   const calculateAverage = (rating: { rate: number }[]) => {
     if (rating.length === 0) return 0
@@ -27,7 +29,11 @@ export default function CardBookSimple({
   return (
     <>
       <S.Content>
-        <S.BookContainer></S.BookContainer>
+        <S.BookContainer>
+          {coverUrl && (
+            <Image src={coverUrl} alt="ImageBook" width={64} height={94} />
+          )}
+        </S.BookContainer>
 
         <S.InfoContainer>
           <S.Header>

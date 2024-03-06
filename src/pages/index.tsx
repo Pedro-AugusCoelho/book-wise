@@ -73,6 +73,7 @@ export default function Home() {
                     author={item.author}
                     rateNumber={item.ratings}
                     title={item.name}
+                    coverUrl={item.cover_url}
                   />
                 ))}
               </S.listBooks>

@@ -51,12 +51,12 @@ export default function CardBook({ ratings }: CardBookProps) {
 
         <S.Body>
           <S.BookContainer>
-            {/* <Image
+            <Image
               src={ratings.book.cover_url}
               alt="image-book"
               width={108}
               height={152}
-            /> */}
+            />
           </S.BookContainer>
           <S.CommentContainer>
             <S.CommentHeader>

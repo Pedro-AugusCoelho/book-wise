@@ -1,9 +1,10 @@
 import { styled } from '../../../stitches.config'
+import Image from 'next/image'
 
 export const SidebarLoginContainer = styled('div', {
   maxWidth: '230px',
   width: '100%',
-  maxHeight: '100vh',
+  maxHeight: 'calc(100vh - 40px)',
   height: '100%',
   borderRadius: '$md',
 
@@ -77,4 +78,12 @@ export const BtnConnectImageContainer = styled('div', {
   alignItems: 'center',
 
   background: '$gradient-vertical',
+})
+
+export const UserImage = styled(Image, {
+  border: '1px solid',
+  backgroundImage: 'linear-gradient(180deg, #7FD1CC 0%, #9694F5 100%)',
+  borderRadius: '$full',
+
+  cursor: 'pointer',
 })
